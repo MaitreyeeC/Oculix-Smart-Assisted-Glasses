@@ -8,6 +8,8 @@ from routers.read_text import router as read_text_router
 from routers.read_document import router as read_document_router
 from routers.currency import router as currency_router
 from routers.fall_detection import router as fall_detection_router
+from routers.emergency_contacts import router as emergency_router
+from routers.activity import router as activity_router   # NEW
 
 app = FastAPI(title="Oculix Seeing AI Backend")
 
@@ -27,7 +29,10 @@ app.include_router(read_text_router)
 app.include_router(read_document_router)
 app.include_router(currency_router)
 app.include_router(fall_detection_router)
+app.include_router(emergency_router)
+app.include_router(activity_router)   # NEW
 
+# -------------------------------------------------
 @app.get("/")
 def root():
     return {
@@ -39,6 +44,7 @@ def root():
             "/read-document",
             "/currency",
             "/fall-detection",
+            "/activity",
         ],
     }
 

@@ -1,0 +1,147 @@
+/* ---------------- BASE SIDEBAR (MINIMAL) ---------------- */
+.sidebar {
+  width: 70px; /* collapsed */
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 35px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 10;
+  background: transparent;
+  backdrop-filter: none;
+  transform: translateX(-5px); /* tiny hidden slide */
+  opacity: 0.7; /* slightly faded when collapsed */
+  transition: 
+      width 0.3s ease,
+      padding 0.3s ease,
+      transform 0.3s ease,
+      opacity 0.3s ease,
+      background 0.3s ease,
+      backdrop-filter 0.3s ease;
+}
+
+/* Expanded Sidebar — small floating panel */
+.sidebar.expanded {
+  width: 200px;
+  padding: 35px 18px;
+  align-items: flex-start;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(14px) saturate(150%);
+  border-right: 1px solid rgba(255,255,255,0.35);
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 1000;
+}
+
+
+/* ---------------- THEMES (only apply when expanded) ---------------- */
+.sidebar.pastel.expanded {
+  background: linear-gradient(180deg, #ffe6f7 0%, #ffd7ef 50%, #ffe6f7 100%);
+}
+
+.sidebar.glass.expanded {
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(18px) saturate(180%);
+}
+
+.sidebar.high-contrast.expanded {
+  background: black;
+  color: yellow;
+  border-right: 3px solid yellow;
+}
+
+/* ---------------- LOGO ---------------- */
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 6px;
+}
+
+.logo-text {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.sidebar.expanded .logo-text {
+  opacity: 1;
+}
+
+/* ---------------- NAV LINKS ---------------- */
+nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 9px 10px;
+  border-radius: 8px;
+  transition: 0.25s;
+  white-space: nowrap;
+  color: inherit;
+}
+
+/* Hidden text in collapsed */
+.link-text {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.sidebar.expanded .link-text {
+  opacity: 1;
+}
+
+/* Hover */
+.link:hover {
+  transform: translateX(6px);
+  background: rgba(255,255,255,0.2);
+}
+
+/* Active route */
+.link.active {
+  font-weight: 700;
+  color: white !important;
+  background: #ff59a0;
+  border-left: 4px solid #d5006d;
+  padding-left: 12px;
+}
+
+/*  ANIMATION  */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.sidebar.expanded .logo-text,
+.sidebar.expanded .link-text {
+  animation: fadeSlideIn 0.35s ease forwards;
+}
+
+/* Stagger animation: links appear one after another */
+nav .link:nth-child(1) .link-text { animation-delay: 0.05s; }
+nav .link:nth-child(2) .link-text { animation-delay: 0.1s; }
+nav .link:nth-child(3) .link-text { animation-delay: 0.15s; }
+nav .link:nth-child(4) .link-text { animation-delay: 0.2s; }
