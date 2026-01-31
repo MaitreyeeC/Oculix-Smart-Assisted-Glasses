@@ -1,5 +1,6 @@
 # Oculix — AI Smart Assistive Glasses for the Visually Impaired
 **Developed by Maitreyee Choudhari & Yash Patil**
+
 Status-Patent Pending (Application no.202621005704)
 
 Assistive Technology · Computer Vision · Embedded Systems · AI for Accessibility 
